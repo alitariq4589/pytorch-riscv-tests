@@ -14,7 +14,6 @@ permissions: read-all
 
 jobs:
   pytorch-linux-noble-riscv64-py3_12-gcc14-cross-build:
-    if: github.repository_owner == 'pytorch'
     name: pytorch-linux-noble-riscv64-py3.12-gcc14-cross-build
     uses: ./.github/workflows/_linux-build.yml
     with:
@@ -31,7 +30,6 @@ jobs:
     secrets: inherit
 
   pytorch-linux-noble-riscv64-py3_12-gcc14-test:
-    if: github.repository_owner == 'pytorch'
     name: pytorch-linux-noble-riscv64-py3.12-gcc14-test
     uses: ./.github/workflows/_linux-test.yml
     needs: pytorch-linux-noble-riscv64-py3_12-gcc14-cross-build

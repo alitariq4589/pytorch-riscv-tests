@@ -56,7 +56,6 @@ jobs:
   linux-noble-riscv64-py3_12-inductor-build:
     name: linux-noble-riscv64-py3.12-inductor
     uses: ./.github/workflows/_linux-build.yml
-    if: github.repository_owner == 'pytorch'
     with:
       runner: linux.c7i.2xlarge
       build-environment: linux-noble-riscv64-py3.12-gcc14
@@ -106,7 +105,6 @@ jobs:
     name: linux-noble-riscv64-py3.12-inductor
     uses: ./.github/workflows/_linux-test.yml
     needs: linux-noble-riscv64-py3_12-inductor-build
-    if: github.repository_owner == 'pytorch'
     permissions:
       id-token: write
       contents: read

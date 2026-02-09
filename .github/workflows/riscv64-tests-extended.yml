@@ -14,7 +14,6 @@ permissions: read-all
 
 jobs:
   riscv64-py3_12-gcc14-build:
-    if: github.repository_owner == 'pytorch'
     name: riscv64-py3.12-gcc14-build
     uses: ./.github/workflows/_linux-build.yml
     with:
@@ -32,7 +31,6 @@ jobs:
     secrets: inherit
 
   riscv64-py3_12-gcc14-test:
-    if: github.repository_owner == 'pytorch'
     name: riscv64-py3.12-gcc14-test
     uses: ./.github/workflows/_linux-test.yml
     needs: riscv64-py3_12-gcc14-build
