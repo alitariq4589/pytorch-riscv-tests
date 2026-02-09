@@ -1,0 +1,35 @@
+name: riscv64-simple-test
+
+on:
+  push:
+    branches:
+      - riscv-tests
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  simple-test:
+    name: Simple RISC-V Test
+    runs-on: RISCV64
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Test Python
+        run: |
+          python --version
+          python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
+
+      - name: Test Basic Tensor Operations
+        run: |
+          python -c "
+          import torch
+          x = torch.randn(10)
+          y = torch.randn(10)
+          z = torch.matmul(x, y)
+          print(f'Matmul result: {z}')
+          "
