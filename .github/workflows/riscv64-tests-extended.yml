@@ -2,6 +2,8 @@ name: riscv64-tests-extended
 
 on:
   push:
+    branches:
+      - riscv-tests
     tags:
       - ciflow/riscv64-extended/*
   workflow_dispatch:
