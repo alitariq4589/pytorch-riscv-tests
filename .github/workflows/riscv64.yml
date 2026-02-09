@@ -15,13 +15,13 @@ concurrency:
 permissions: read-all
 
 jobs:
-  pytorch-linux-noble-riscv64-py3_12-gcc14-cross-build:
-    name: pytorch-linux-noble-riscv64-py3.12-gcc14-cross-build
+  pytorch-linux-noble-riscv64-py3_12-gcc14-build:
+    name: pytorch-linux-noble-riscv64-py3.12-gcc14-build
     uses: ./.github/workflows/_linux-build.yml
     with:
       build-environment: linux-noble-riscv64-py3.12-gcc14
       docker-image-name: pytorch-linux-noble-riscv64-py3.12-gcc14
-      runner: linux.c7i.2xlarge
+      runner: RISCV64
       test-matrix: |
         { include: [
           { config: "default", shard: 1, num_shards: 3, runner: "RISCV64" },

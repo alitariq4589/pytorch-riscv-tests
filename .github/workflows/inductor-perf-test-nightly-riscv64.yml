@@ -57,7 +57,7 @@ jobs:
     name: linux-noble-riscv64-py3.12-inductor
     uses: ./.github/workflows/_linux-build.yml
     with:
-      runner: linux.c7i.2xlarge
+      runner: RISCV64
       build-environment: linux-noble-riscv64-py3.12-gcc14
       docker-image-name: pytorch-linux-noble-riscv64-py3.12-gcc14-inductor-benchmarks
       test-matrix: |

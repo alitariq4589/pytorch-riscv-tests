@@ -14,6 +14,12 @@ jobs:
     runs-on: RISCV64
     timeout-minutes: 60
     steps:
+      - name: Setup dependencies
+        run: |
+          apt-get update
+          apt-get install -y python3 python3-pip git
+          ln -sf /usr/bin/python3 /usr/bin/python || true
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -21,15 +27,24 @@ jobs:
 
       - name: Test Python
         run: |
-          python --version
-          python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
+          python3 --version
+          python3 -m pip --version
+
+      - name: Install PyTorch
+        run: |
+          python3 -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Test PyTorch Import
+        run: |
+          python3 -c "import torch; print(f'PyTorch version: {torch.__version__}')"
 
       - name: Test Basic Tensor Operations
         run: |
-          python -c "
-          import torch
-          x = torch.randn(10)
-          y = torch.randn(10)
-          z = torch.matmul(x, y)
-          print(f'Matmul result: {z}')
-          "
+          python3 << 'EOF'
+import torch
+x = torch.randn(10)
+y = torch.randn(10)
+z = torch.matmul(x, y)
+print(f'Matmul result: {z}')
+EOF
+
